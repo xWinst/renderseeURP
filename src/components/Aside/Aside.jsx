@@ -21,6 +21,23 @@ const Aside = ({ functions }) => {
         },
         [name, sendMessage]
     );
+    const setIntensity = useCallback(
+        (event) => {
+            let { intensity } = event.detail;
+            console.log("intensity: ", intensity);
+            sendMessage("RoomController", "setIntensity", JSON.stringify({ name, intensity }));
+        },
+        [name, sendMessage]
+    );
+
+    const setAmbient = useCallback(
+        (event) => {
+            let { ambient } = event.detail;
+            console.log("ambient: ", ambient);
+            sendMessage("RoomController", "setAmbient", Number(ambient));
+        },
+        [sendMessage]
+    );
 
     const setTexture = useCallback(
         (event) => {
@@ -33,16 +50,20 @@ const Aside = ({ functions }) => {
 
     useEffect(() => {
         document.body.addEventListener("color", setColor);
+        document.body.addEventListener("intensity", setIntensity);
         document.body.addEventListener("texture", setTexture);
+        document.body.addEventListener("ambient", setAmbient);
         window.addEventListener("keydown", toggleMenu);
         addEventListener("picker", setName);
         return () => {
             document.body.removeEventListener("color", setColor);
+            document.body.removeEventListener("intensity", setIntensity);
             document.body.removeEventListener("texture", setTexture);
+            document.body.removeEventListener("ambient", setAmbient);
             window.removeEventListener("keydown", toggleMenu);
             removeEventListener("picker", setName);
         };
-    }, [setColor, setTexture, setName, toggleMenu]);
+    }, [setColor, setTexture, setName, toggleMenu, setIntensity, setAmbient]);
 
     return (
         <aside className={showMenu ? s.asideActive : s.aside}>
