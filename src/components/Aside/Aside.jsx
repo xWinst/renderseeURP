@@ -5,7 +5,14 @@ import s from "./Aside.module.css";
 
 const Aside = ({ functions }) => {
     const [name, setName] = useState();
+    const [showMenu, setShowMenu] = useState();
     const { sendMessage } = functions;
+
+    const toggleMenu = useCallback((event) => {
+        if (event.code === "KeyH") {
+            setShowMenu((prev) => !prev);
+        }
+    }, []);
 
     const setColor = useCallback(
         (event) => {
@@ -27,16 +34,18 @@ const Aside = ({ functions }) => {
     useEffect(() => {
         document.body.addEventListener("color", setColor);
         document.body.addEventListener("texture", setTexture);
+        window.addEventListener("keydown", toggleMenu);
         addEventListener("picker", setName);
         return () => {
             document.body.removeEventListener("color", setColor);
             document.body.removeEventListener("texture", setTexture);
+            window.removeEventListener("keydown", toggleMenu);
             removeEventListener("picker", setName);
         };
-    }, [setColor, setTexture, setName]);
+    }, [setColor, setTexture, setName, toggleMenu]);
 
     return (
-        <aside className={s.asideActive}>
+        <aside className={showMenu ? s.asideActive : s.aside}>
             <div className={s.container}>
                 <p>Selected Object:</p>
                 <p className={s.name}>{name}</p>
@@ -50,9 +59,9 @@ const Aside = ({ functions }) => {
                 </p>
                 <p>
                     Camera movement: mouse movement while holding down the right mouse button or the
-                    “W”, “A”, “S”, “D” keys.
+                    “Left Shift”, “A”, “Left Ctrl”, “D” keys.
                 </p>
-                <p>Zoom: mouse wheel or "Left Ctrl", "Left Shift" keys.</p>
+                <p>Zoom: mouse wheel or "W", "S" keys.</p>
             </div>
         </aside>
     );

@@ -42,7 +42,7 @@ const Canvas = (unityProps) => {
     }, []);
 
     const item = () => {
-        return <p>BINGO!!!</p>;
+        return <p style={{ position: "absolute" }}>H - hide/show menu</p>;
     };
 
     console.log("renderCount: ", ++renderCount);

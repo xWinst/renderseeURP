@@ -7,7 +7,7 @@
     overflow-y: auto;
     background: #fff;
     border-right: 1px solid #eaecee;
-    transform: translateX(-240px);
+    transform: translateX(-265px);
     transition: all 0.2s ease-in-out;
     z-index: 10;
 }
