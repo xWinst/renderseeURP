@@ -1,9 +1,13 @@
 .colorList {
     display: flex;
     max-width: 230px;
-    gap: 10px;
+    gap: 8px;
     flex-wrap: wrap;
 }
+
+/* .customColor {
+
+} */
 
 .prop {
     font-weight: 700;
@@ -72,4 +76,14 @@
 .activeTexture {
     composes: texture;
     border-color: #ff5736;
+}
+
+input[type="range"] {
+    width: 150px;
+}
+
+.p {
+    font-weight: 400;
+    font-size: 14px;
+    text-align: center;
 }
