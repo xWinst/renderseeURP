@@ -25,9 +25,9 @@ const Aside = ({ functions }) => {
         (event) => {
             let { intensity } = event.detail;
             console.log("intensity: ", intensity);
-            sendMessage("RoomController", "setIntensity", JSON.stringify({ name, intensity }));
+            sendMessage("RoomController", "setIntensity", Number(intensity));
         },
-        [name, sendMessage]
+        [sendMessage]
     );
 
     const setAmbient = useCallback(
