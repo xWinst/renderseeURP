@@ -9,6 +9,7 @@ const Panel = () => {
         texture: null,
         intensity: 0.8,
         ambient: 0.78,
+        sun: 0,
     });
 
     const [rgb, setRgb] = useState({ r: 0, g: 0, b: 0 });
@@ -35,6 +36,19 @@ const Panel = () => {
 
     return (
         <div>
+            {/* <div className={s.prop}>
+                <p>Directional Light Intensity (sun)</p>
+                <input
+                    type="range"
+                    name="sun"
+                    min={0}
+                    max={2}
+                    step={0.01}
+                    value={settings.sun}
+                    onChange={changeLight}
+                />
+            </div> */}
+
             <div className={s.prop}>
                 <p>Light Intensity (bulbs)</p>
                 <input

@@ -23,8 +23,8 @@ const Aside = ({ functions }) => {
     );
     const setIntensity = useCallback(
         (event) => {
-            let { intensity } = event.detail;
-            console.log("intensity: ", intensity);
+            const { intensity } = event.detail;
+            // console.log("intensity: ", intensity);
             sendMessage("RoomController", "setIntensity", Number(intensity));
         },
         [sendMessage]
@@ -32,12 +32,20 @@ const Aside = ({ functions }) => {
 
     const setAmbient = useCallback(
         (event) => {
-            let { ambient } = event.detail;
-            console.log("ambient: ", ambient);
+            const { ambient } = event.detail;
+            // console.log("ambient: ", ambient);
             sendMessage("RoomController", "setAmbient", Number(ambient));
         },
         [sendMessage]
     );
+
+    // const setSun = useCallback(
+    //     (event) => {
+    //         const { ambient } = event.detail;
+    //         sendMessage("RoomController", "setSun", Number(sun));
+    //     },
+    //     [sendMessage]
+    // );
 
     const setTexture = useCallback(
         (event) => {
